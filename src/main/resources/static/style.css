@@ -1,0 +1,9 @@
+.container{
+    border : 1px solid black;
+    border-top: 4px solid rgb(25, 130, 250);
+    width: 1000px;
+    height: auto;
+    padding: 50px 50px 50px;
+    margin-left: 200px;
+    border-radius: 20px;
+}

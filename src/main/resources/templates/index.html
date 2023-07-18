@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des employés</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+<h1 class="text-center">Liste des employés</h1>
+<a class="btn btn-primary" th:href="@{employees/add}" th:style="'margin: 20px 0px 0px 200px;'">Ajouter un nouveau employé</a>
+<table class="table table-hover shadow-lg" th:style="'width: 1200px;margin: 20px 0px 0px 200px;'">
+    <thead>
+    <tr>
+        <th>Matricule</th>
+        <th>Nom</th>
+        <th>Prénom(s)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employeEntity : ${employees}">
+        <td th:text="${employeEntity.matricule}"></td>
+        <td th:text="${employeEntity.name}"></td>
+        <td th:text="${employeEntity.first_name}"></td>
+        <td><a class="badge rounded-pill text-bg-primary" th:href="@{/employee/{id}(id=${employeEntity.id})}">Détails</a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

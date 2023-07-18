@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+<form th:action="@{/employee/{id}/edit}" method="post" enctype="multipart/form-data" class="shadow" th:object="${employee}" th:style="'margin: 50px 0px 0px 470px;width: 600px;padding: 20px 20px 20px 20px'">
+    <div class="mb-3" >
+        <label for="name" class="form-label">Nom</label>
+        <input type="text" class="form-control" id="name" th:field="*{name}" name="name">
+    </div>
+    <div class="mb-3">
+        <label for="first_name" class="form-label">Prénom(s)</label>
+        <input type="text" class="form-control" id="first_name" th:field="*{first_name}" name="first_name">
+    </div>
+    <div class="mb-3">
+        <label for="birthday" class="form-label">Date de naissance</label>
+        <input type="date" class="form-control" id="birthday" th:field="*{birthday}" name="birthday">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Ajouter une photo</label>
+        <input type="file" class="form-control" th:field="*{photos}" accept="image/png, image/jpeg" name="photos">
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+</form>
+</body>
+</html>
