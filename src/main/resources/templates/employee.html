@@ -5,28 +5,100 @@
     <title>Employe</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
-<body>
-<div th:if="${employee}" th:style="'border : 1px solid black;
-    display: flex;
-    flex-direction: row;
-    border-top: 4px solid rgb(25, 130, 250);
+<body th:style="'background-color:#2c3034'">
+<nav class="navbar bg-dark fixed-top" data-bs-theme="dark" th:style="'display:flex;flex-direction:row;'">
+    <div class="container-fluid">
+        <img th:src="@{/images/dark.png}" alt="Exemple d'image" th:style="'width:50px ;height:50px;border-radius:100%;'">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" th:style="'display:flex;flex-direction:row;'">
+            <li class="nav-item" th:style="'margin-left:520px;'">
+                <a class="nav-link" aria-current="page" th:href="@{/}">Accueil</a>
+            </li>
+            <li class="nav-item" th:style="'margin-left:20px;'">
+                <a class="nav-link" th:href="@{/employees}">Liste des employés</a>
+            </li>
+            <li class="nav-item" th:style="'margin-left:20px;'">
+                <a class="nav-link" th:href="@{/employees/add}">Nouveau employé</a>
+            </li>
+        </ul>
+        <form th:action="@{/logout}" method="post" th:style="'margin-left:100px'">
+            <input class="btn btn-outline-primary" type="submit" value="Se déconnecter" />
+        </form>
+    </div>
+</nav>
+<div th:if="${employee}" th:style="'border : 0px;
     width: 800px;
     height: auto;
-    padding: 30px 30px 30px 100px;
+    padding: 20px 20px 20px 20px;
     margin-left: 400px;
-    margin-top: 50px;
-    border-radius: 20px;'">
-    <div>
-        <img th:src="@{'/user-photos/' + ${employee.id} + '/' + ${employee.photos}}" alt="Aucune image" th:style="'width: 200px;'">
+    margin-top: 100px;
+    margin-bottom:20px;
+    border-radius: 20px;
+    background-color:#2e3237;
+    box-shadow: 0 0 5px white;'">
+    <div th:style="'display: flex;flex-direction: row;'">
+        <div>
+            <img th:src="@{'/user-photos/' + ${employee.id} + '/' + ${employee.photos}}" alt="Aucune image" th:style="'width: 200px;'">
+        </div>
+        <div th:style="'margin-left: 200px;'">
+            <p th:style="'color:white;'">Nom: <span th:text="${employee.name}" th:style="'text-transform: uppercase;color:white;'"></span></p>
+            <p th:style="'color:white;'">Prénom(s): <span th:text="${employee.first_name}" th:style="'color:white;'"></span></p>
+            <p th:style="'color:white;'">Fonction: <span th:text="${employee.function}" th:style="'color:white;'"></span></p>
+            <p th:style="'color:white;'">Matricule: <span th:text="${employee.matricule}" th:style="'color:white;'"></span></p>
+        </div>
     </div>
-    <div th:style="'margin-left: 50px;margin-top:10px;'">
-        <p>Nom: <span th:text="${employee.name}" th:style="'text-transform: uppercase;'"></span></p>
-        <p>Prénom(s): <span th:text="${employee.first_name}"></span></p>
-        <p>Date de naissance: <span th:text="${employee.birthday}"></span></p>
-        <p>Numero matricule: <span th:text="${employee.matricule}"></span></p>
+    <div>
+        <div th:style="'width: 400px;
+  height: 10px;
+  background: linear-gradient(to bottom, #007BFF, #ffffff);
+  margin-top:50px;
+  margin-left:200px;
+  border-radius:5px;
+  '"></div>
+        <div>
+            <h3 th:style="'color:white;font-family:cursive;text-align:center;margin-top:30px'">Informations personelles</h3>
+            <div th:style="'margin-left: 50px;margin-top:10px;'">
+                <p th:style="'color:white;'">Sexe: <span th:text="${employee.sexe}" th:style="'text-transform: uppercase;color:white;margin-left:10px;'"></span></p>
+                <p th:style="'color:white;'">Date de naissance: <span th:text="${employee.birthday}" th:style="'color:white;margin-left:10px;'"></span></p>
+                <p th:style="'color:white;'">Nombre d'enfant à sa charge: <span th:text="${employee.children_number}" th:style="'color:white;margin-left:10px;'"></span></p>
+                <p th:style="'color:white;'">Numero de CIN: <span th:text="${employee.cin.number}" th:style="'color:white;margin-left:10px;'"></span></p>
+                <p th:style="'color:white;'">Date de délivrance du CIN: <span th:text="${employee.cin.issue_date}" th:style="'color:white;margin-left:10px;'"></span></p>
+                <p th:style="'color:white;'">Lieu de délivrance du CIN: <span th:text="${employee.cin.issue_location}" th:style="'color:white;margin-left:10px;'"></span></p>
+                <p th:style="'color:white;'">Numero de cnaps: <span th:text="${employee.cnaps}" th:style="'color:white;margin-left:10px;'"></span></p>
+                <p th:style="'color:white;'">Adresse: <span th:text="${employee.location}" th:style="'color:white;margin-left:10px;'"></span></p>
+            </div>
+        </div>
+            <div th:style="'width: 400px;
+  height: 10px;
+  background: linear-gradient(to bottom, #007BFF, #ffffff);
+  margin-top:50px;
+  margin-left:200px;
+  border-radius:5px;
+  '"></div>
+        <div>
+            <h3 th:style="'color:white;font-family:cursive;text-align:center;margin-top:30px'">Informations professionnels</h3>
+            <div th:style="'margin-left: 50px;margin-top:10px;'">
+                <p th:style="'color:white;'">Date d'embauche: <span th:text="${employee.starting_date}" th:style="'text-transform: uppercase;color:white;margin-left:10px;'"></span></p>
+                <p th:style="'color:white;'">Date de départ: <span th:text="${employee.closing_date}" th:style="'color:white;margin-left:10px;'"></span></p>
+                <p th:style="'color:white;'">Catégorie socio-professionnels: <span th:text="${employee.csp}" th:style="'color:white;margin-left:10px;'"></span></p>
+            </div>
+        </div>
+            <div th:style="'width: 400px;
+  height: 10px;
+  background: linear-gradient(to bottom, #007BFF, #ffffff);
+  margin-top:50px;
+  margin-left:200px;
+  border-radius:5px;
+  '"></div>
+            <div>
+                <h3 th:style="'color:white;font-family:cursive;text-align:center;margin-top:30px'">Contacts</h3>
+                <div th:style="'margin-left: 50px;margin-top:10px;'">
+                    <p th:style="'color:white;'">Email personelle: <span th:text="${employee.email_perso}" th:style="'color:white;margin-left:10px;'"></span></p>
+                    <p th:style="'color:white;'">Email professionnelle: <span th:text="${employee.email_pro}" th:style="'color:white;margin-left:10px;'"></span></p>
+                    <p th:style="'color:white;'">Numero de téléphone: <span th:each="num : ${employee.numeros}" th:text="${num} + ', '" th:style="'color:white;margin-left:10px;'"></span> </p>
+                </div>
+            </div>
     </div>
 </div>
-<a type="button" class="btn btn-outline-primary" th:href="@{/employees}" th:style="'margin-left: 700px;margin-top: 10px;'">Retour à la liste des employés</a>
 <div th:unless="${employee}">
     <p>Employé introuvable !</p>
 </div>

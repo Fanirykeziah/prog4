@@ -4,27 +4,84 @@
     <meta charset="UTF-8">
     <title>Liste des employés</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-NmevjbWvn7KrQ1o2MA4fxc6QJ7lEl4wIz2mL+rmbBmzBI8J3Wm30p2WYFsm+X2O9XxI9Ispf5cqP6CeGo30LA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
-<h1 class="text-center">Liste des employés</h1>
-<a class="btn btn-primary" th:href="@{employees/add}" th:style="'margin: 20px 0px 0px 200px;'">Ajouter un nouveau employé</a>
-<table class="table table-hover shadow-lg" th:style="'width: 1200px;margin: 20px 0px 0px 200px;'">
-    <thead>
-    <tr>
-        <th>Matricule</th>
-        <th>Nom</th>
-        <th>Prénom(s)</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="employeEntity : ${employees}">
-        <td th:text="${employeEntity.matricule}"></td>
-        <td th:text="${employeEntity.name}"></td>
-        <td th:text="${employeEntity.first_name}"></td>
-        <td><a class="badge rounded-pill text-bg-primary" th:href="@{/employee/{id}(id=${employeEntity.id})}">Détails</a></td>
-    </tr>
-    </tbody>
-</table>
+<body th:style="'background-color:#2c3034'">
+<nav class="navbar bg-dark fixed-top" data-bs-theme="dark" th:style="'display:flex;flex-direction:row;'">
+    <div class="container-fluid">
+        <img th:src="@{/images/dark.png}" alt="Exemple d'image" th:style="'width:50px ;height:50px;border-radius:100%;'">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" th:style="'display:flex;flex-direction:row;'">
+            <li class="nav-item" th:style="'margin-left:520px;'">
+                <a class="nav-link" aria-current="page" th:href="@{/}">Accueil</a>
+            </li>
+            <li class="nav-item" th:style="'margin-left:20px;'">
+                <a class="nav-link active" th:href="@{/employees}">Liste des employés</a>
+            </li>
+            <li class="nav-item" th:style="'margin-left:20px;'">
+                <a class="nav-link" th:href="@{/employees/add}">Nouveau employé</a>
+            </li>
+        </ul>
+        <form th:action="@{/logout}" method="post" th:style="'margin-left:100px'">
+            <input class="btn btn-outline-primary" type="submit" value="Se déconnecter" />
+        </form>
+    </div>
+</nav>
+<div th:style="'margin-top:100px;'">
+    <h1 class="text-center" th:style="'color:white;'">Liste des employés</h1>
+    <div th:style="'display:flex;flex-direction:row;'">
+        <div th:style="'margin-left:210px'">
+            <a th:href="@{/employees}">Croissant</a>
+            <a th:href="@{/employees/desc}">Décroissant</a>
+        </div>
+        <div th:style="'margin-left:900px'">
+            <a th:href="@{/download-employees-csv?(keyword=${keyword} != null ? keyword : '', start=${start} != null ? start : '', end=${end} != null ? end : '')}">Télécharger</a>
+        </div>
+    </div>
+    <div class="container-fluid" th:style="'margin-left:150px;margin-top:30px;display:flex;flex-direction:row;'">
+        <form th:action="@{/employees}" method="get" th:object="${employees}" class="d-flex" role="search">
+            <div>
+                <input class="form-control me-2" type="search" id="keyword" name="keyword" th:style="'width:300px;color:white;background-color:#373d43;'">
+            </div>
+            <button type="submit" class="btn btn-success" th:style="'margin-left:5px'">Rechercher</button>
+        </form>
+        <form th:action="@{/employees}" method="get" th:object="${employees}" class="d-flex" role="search">
+            <div>
+                <label for="start" th:style="'color:white;margin-left:5px;'">Date début:</label>
+                <input type="date" id="start" name="start" th:style="'width:300px;height:40px;background-color:#373d43;color:white;border:1px solid white;border-radius:10px;margin-left:10px;'">
+                <label for="end" th:style="'color:white;'">Date fin:</label>
+                <input type="date" id="end" name="end" th:style="'width:300px;height:40px;background-color:#373d43;color:white;border:1px solid white;border-radius:10px;margin-left:10px;'">
+            </div>
+            <button type="submit" class="btn btn-success" th:style="'margin-left:10px'">Rechercher</button>
+        </form>
+    </div>
+    <table class="table table-hover shadow-lg table-dark" th:style="'width: 1200px;margin: 20px 0px 0px 200px;'">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom(s)</th>
+            <th>Sexe</th>
+            <th>Fonction</th>
+            <th>Matricule</th>
+            <th>Date d'embauche</th>
+            <th>Date de départ</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employeEntity : ${employees}">
+            <td th:text="${employeEntity.name}"></td>
+            <td th:text="${employeEntity.first_name}"></td>
+            <td th:text="${employeEntity.sexe}"></td>
+            <td th:text="${employeEntity.function}"></td>
+            <td th:text="${employeEntity.matricule}"></td>
+            <td th:text="${employeEntity.starting_date}"></td>
+            <td th:text="${employeEntity.closing_date}"></td>
+            <td><a class="badge rounded-pill text-bg-primary" th:href="@{/employee/{id}(id=${employeEntity.id})}">Détails</a></td>
+            <td><a class="badge rounded-pill text-bg-primary" th:href="@{/update/{id}(id=${employeEntity.id})}">Modifier</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
 
 </body>
 </html>

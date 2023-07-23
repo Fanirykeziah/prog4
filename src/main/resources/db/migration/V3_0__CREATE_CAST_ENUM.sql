@@ -1,0 +1,1 @@
+CREATE CAST (character varying AS csp) WITH INOUT AS ASSIGNMENT;
