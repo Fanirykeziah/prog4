@@ -28,67 +28,71 @@
 <form th:action="@{/employees/add}" method="post" enctype="multipart/form-data" class="shadow" th:object="${employee}" th:style="'margin: 100px 0px 0px 470px;width: 600px;padding: 20px 20px 20px 20px'">
     <div class="mb-3" >
         <label for="name" class="form-label" th:style="'color:white;'">Nom</label>
-        <input type="text" class="form-control" id="name" th:field="*{name}" name="name">
+        <input type="text" class="form-control" id="name" th:field="*{name}" name="name" th:style="'background-color:#E4E5E5;'">
     </div>
     <div class="mb-3">
         <label for="first_name" class="form-label" th:style="'color:white;'">Prénom(s)</label>
-        <input type="text" class="form-control" id="first_name" th:field="*{first_name}" name="first_name">
+        <input type="text" class="form-control" id="first_name" th:field="*{first_name}" name="first_name" th:style="'background-color:#E4E5E5;'">
     </div>
     <label th:style="'color:white;'" >Sexe:
         <select name="sexe" class="form-select" aria-label="Default select example">
-            <option th:each="sexe : ${T(com.example.Prog4.model.Gender).values()}" th:style="'color:black;'" th:value="${sexe}" th:text="${sexe}"></option>
+            <option th:each="sexe : ${T(com.example.Prog4.model.Gender).values()}" th:style="'color:black;background-color:#E4E5E5;'" th:value="${sexe}" th:text="${sexe}"></option>
         </select>
     </label><br/>
     <div class="mb-3">
         <label for="birthday" class="form-label" th:style="'color:white;'">Date de naissance</label>
-        <input type="date" class="form-control" id="birthday" th:field="*{birthday}" name="birthday">
+        <input type="date" class="form-control" id="birthday" th:field="*{birthday}" name="birthday" th:style="'background-color:#E4E5E5;'">
     </div>
     <div class="mb-3">
         <label for="location" class="form-label" th:style="'color:white;'">Adresse</label>
-        <input type="text" class="form-control" id="location" th:field="*{location}" name="location">
+        <input type="text" class="form-control" id="location" th:field="*{location}" name="location" th:style="'background-color:#E4E5E5;'">
     </div>
     <br>
     <div class="mb-3">
         <label class="form-label" th:style="'color:white;'">CIN </label>
         <br>
         <label for="number" class="form-label" th:style="'color:white;'">Numéro de délivrance</label>
-        <input type="text" class="form-control" id="number" th:field="*{cin.number}" /><br>
+        <input type="text" class="form-control" id="number" th:field="*{cin.number}" th:style="'background-color:#E4E5E5;'"/><br>
         <label for="date" class="form-label" th:style="'color:white;'">Date de délivrance</label>
-        <input type="date" class="form-control" id="date" th:field="*{cin.issue_date}" /><br>
+        <input type="date" class="form-control" id="date" th:field="*{cin.issue_date}" th:style="'background-color:#E4E5E5;'"/><br>
         <label for="located" class="form-label" th:style="'color:white;'">Lieu de délivrance</label>
-        <input type="text" class="form-control" id="located" th:field="*{cin.issue_location}" /><br>
+        <input type="text" class="form-control" id="located" th:field="*{cin.issue_location}" th:style="'background-color:#E4E5E5;'" /><br>
     </div>
     <div class="mb-3">
         <label for="function" class="form-label" th:style="'color:white;'">Fonction</label>
-        <input type="text" class="form-control" id="function" th:field="*{function}" name="function">
+        <input type="text" class="form-control" id="function" th:field="*{function}" name="function" th:style="'background-color:#E4E5E5;'">
     </div>
     <div class="mb-3">
         <label class="form-label" th:style="'color:white;'">Ajouter une photo</label>
-        <input type="file" class="form-control" th:field="*{photos}" accept="image/png, image/jpeg" name="photos">
+        <input type="file" class="form-control" th:field="*{photos}" accept="image/png, image/jpeg" name="photos" th:style="'background-color:#E4E5E5;'">
     </div>
     <div class="mb-3">
         <label for="children_number" class="form-label" th:style="'color:white;'">Nombre d'enfant à sa charge</label>
-        <input type="number" class="form-control" id="children_number" th:field="*{children_number}" name="children_number">
+        <input type="number" class="form-control" id="children_number" th:field="*{children_number}" name="children_number" th:style="'background-color:#E4E5E5;'">
     </div>
     <div class="mb-3">
         <label for="email_perso" class="form-label" th:style="'color:white;'">Email personnel</label>
-        <input type="text" class="form-control" id="email_perso" th:field="*{email_perso}" name="email_perso">
+        <input type="email" class="form-control" id="email_perso" th:field="*{email_perso}" name="email_perso" th:style="'background-color:#E4E5E5;'">
     </div>
     <div class="mb-3">
         <label for="email_pro" class="form-label" th:style="'color:white;'">Email professionnel</label>
-        <input type="text" class="form-control" id="email_pro" th:field="*{email_pro}" name="email_pro">
+        <input type="email" class="form-control" id="email_pro" th:field="*{email_pro}" name="email_pro" th:style="'background-color:#E4E5E5;'">
     </div>
     <label for="email_pro" class="form-label" th:style="'color:white;'">Catégorie socio-proféssionnel</label>
     <select name="csp" class="form-select" aria-label="Default select example">
         <option th:each="cspOpt : ${T(com.example.Prog4.model.CspType).values()}"
-                th:value="${cspOpt}" th:text="${cspOpt}" th:style="'color:black;'"></option>
+                th:value="${cspOpt}" th:text="${cspOpt}" th:style="'color:black;background-color:#E4E5E5;'"></option>
     </select>
     <div class="mb-3">
         <label for="cnaps" class="form-label" th:style="'color:white;'">Numero CNAPS</label>
-        <input type="text" class="form-control" id="cnaps" th:field="*{cnaps}" name="cnaps">
+        <input type="text" class="form-control" id="cnaps" th:field="*{cnaps}" name="cnaps" th:style="'background-color:#E4E5E5;'">
     </div>
-    <label for="phoneNumbers" class="form-label" th:style="'color:white;'">Numéros de téléphone :</label>
-    <input type="text" class="form-control" id="phoneNumbers" name="numeros" th:field="*{numeros}" required>
+    <div class="mb-3">
+        <label for="salary" class="form-label" th:style="'color:white;'">Salaire</label>
+        <input type="text" class="form-control" id="salary" th:field="*{salary}" name="salary" th:style="'background-color:#E4E5E5;'">
+    </div>
+    <label for="phone_numbers" class="form-label" th:style="'color:white;'">Numéros de téléphone :</label>
+    <input type="text" class="form-control" id="phone_numbers" name="phone_numbers" th:field="*{phone_numbers}" th:style="'background-color:#E4E5E5;'">
     <div th:style="'margin-top:30px;margin-left:50px;'">
         <button type="submit" class="btn btn-primary">Ajouter</button>
         <a type="button" class="btn btn-secondary" th:href="@{/employees}" th:style="'margin-left:300px;'">Annuler</a>

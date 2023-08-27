@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div>
+  <div>
+     <div></div>
+     <div>
+       <h3 th:style="'text-decoration:uppercase'">fiche employé</h3>
+       <p>Matricule: <span th:text="${employee.matricule}"></span></p>
+       <p>Noms: <span th:text="${employee.name}"></span></p>
+       <p>Prénoms: <span th:text="${employee.first_name}"></span></p>
+       <p>Âge: <span th:text="${employee.birthday}"></span> ans</p>
+       <p>Date d'embauche: <span th:text="${employee.starting_date}"></span></p>
+       <p>Date de départ: <span th:text="${employee.closing_date}"></span></p>
+       <p>Numero CNAPS: <span th:text="${employee.cnaps}"></span></p>
+     </div>
+  </div>
+  <div>
+    <h5>Information sur le salaire</h5>
+    <p>Salaire brute actuel : <span th:text="${employee.name}"></span> Ariary/mois</p>
+  </div>
+  <div>
+    <div></div>
+    <div>
+      <p>Nom de l'entreprise : <span th:text="${company.name}"></span></p>
+      <p>NIF : <span th:text="${company.nif}"></span></p>
+      <p>STAT : <span th:text="${company.stat}"></span></p>
+    </div>
+    <div>
+      <p>Adresse de l'entreprise : <span th:text="${company.address}"></span></p>
+      <p th:style="'color:white;'">Numero de téléphone: <span th:each="num : ${company_phone_numbers.phone_numbers}" th:text="${num} + ', '" th:style="'color:white;margin-left:10px;'"></span> </p>
+      <p>Email: <span th:text="${company.email}"></span></p>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

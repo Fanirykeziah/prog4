@@ -34,10 +34,10 @@
             <a th:href="@{/employees/desc}">Décroissant</a>
         </div>
         <div th:style="'margin-left:900px'">
-            <a th:href="@{/download-employees-csv?(keyword=${keyword} != null ? keyword : '', start=${start} != null ? start : '', end=${end} != null ? end : '')}">Télécharger</a>
+            <a th:href="@{/download-employees-csv?(keyword=${param.keyword} , start=${param.start} , end=${param.end})}">Télécharger</a>
         </div>
     </div>
-    <div class="container-fluid" th:style="'margin-left:150px;margin-top:30px;display:flex;flex-direction:row;'">
+    <div class="container-fluid" th:style="'margin-left:30px;margin-top:30px;display:flex;flex-direction:row;'">
         <form th:action="@{/employees}" method="get" th:object="${employees}" class="d-flex" role="search">
             <div>
                 <input class="form-control me-2" type="search" id="keyword" name="keyword" th:style="'width:300px;color:white;background-color:#373d43;'">
@@ -46,7 +46,7 @@
         </form>
         <form th:action="@{/employees}" method="get" th:object="${employees}" class="d-flex" role="search">
             <div>
-                <label for="start" th:style="'color:white;margin-left:5px;'">Date début:</label>
+                <label for="start" th:style="'color:white;margin-left:100px;'">Date début:</label>
                 <input type="date" id="start" name="start" th:style="'width:300px;height:40px;background-color:#373d43;color:white;border:1px solid white;border-radius:10px;margin-left:10px;'">
                 <label for="end" th:style="'color:white;'">Date fin:</label>
                 <input type="date" id="end" name="end" th:style="'width:300px;height:40px;background-color:#373d43;color:white;border:1px solid white;border-radius:10px;margin-left:10px;'">
@@ -54,7 +54,7 @@
             <button type="submit" class="btn btn-success" th:style="'margin-left:10px'">Rechercher</button>
         </form>
     </div>
-    <table class="table table-hover shadow-lg table-dark" th:style="'width: 1200px;margin: 20px 0px 0px 200px;'">
+    <table class="table table-hover shadow-lg table-dark" th:style="'width: 1200px;margin: 20px 20px 20px 30px;'">
         <thead>
         <tr>
             <th>Nom</th>
@@ -62,8 +62,10 @@
             <th>Sexe</th>
             <th>Fonction</th>
             <th>Matricule</th>
+            <th>Catégorie socio-professionnel</th>
             <th>Date d'embauche</th>
             <th>Date de départ</th>
+            <th>Numero de téléphone</th>
         </tr>
         </thead>
         <tbody>
@@ -73,10 +75,13 @@
             <td th:text="${employeEntity.sexe}"></td>
             <td th:text="${employeEntity.function}"></td>
             <td th:text="${employeEntity.matricule}"></td>
+            <td th:text="${employeEntity.csp}"></td>
             <td th:text="${employeEntity.starting_date}"></td>
             <td th:text="${employeEntity.closing_date}"></td>
+            <td th:each="num : ${employeEntity.phone_numbers}" th:text="${num} + ', '"></td>
             <td><a class="badge rounded-pill text-bg-primary" th:href="@{/employee/{id}(id=${employeEntity.id})}">Détails</a></td>
             <td><a class="badge rounded-pill text-bg-primary" th:href="@{/update/{id}(id=${employeEntity.id})}">Modifier</a></td>
+            <td><a th:href="@{/generate-pdf(employeeId=${employeEntity.id})}" download="employee-info.pdf">Télécharger</a></td>
         </tr>
         </tbody>
     </table>

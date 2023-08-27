@@ -33,6 +33,7 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.xhtmlrenderer:flying-saucer-pdf:9.1.22'
 }
 
 tasks.named('test') {

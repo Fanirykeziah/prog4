@@ -26,6 +26,8 @@ public class Employe {
 
     private CinEntity cin;
 
+    private Company company;
+
     private MultipartFile photos;
 
     @Enumerated(value = EnumType.STRING)
@@ -48,11 +50,13 @@ public class Employe {
 
     private String email_pro;
 
-    private List<String> numeros;
+    private List<String> phone_numbers;
 
     private String location;
 
     private CspType csp;
 
     private String cnaps;
+
+    private String salary;
 }

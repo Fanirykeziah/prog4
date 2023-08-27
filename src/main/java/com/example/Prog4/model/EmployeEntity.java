@@ -2,9 +2,11 @@ package com.example.Prog4.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -54,7 +56,10 @@ public class EmployeEntity {
 
     private String email_pro;
 
-    private List<String> numeros;
+    @ElementCollection
+    @CollectionTable(name = "employe_phone_numbers", joinColumns = @JoinColumn(name = "employe_id"))
+    @Column(name = "phone_numbers", unique = true , length = 13)
+    private List<String> phone_numbers = new ArrayList<>();
 
     private String location;
 
@@ -62,4 +67,6 @@ public class EmployeEntity {
     private CspType csp;
 
     private String cnaps;
+
+    private String salary;
 }

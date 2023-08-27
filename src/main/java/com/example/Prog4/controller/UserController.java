@@ -11,10 +11,12 @@ import lombok.AllArgsConstructor;
 import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 @AllArgsConstructor
@@ -24,8 +26,11 @@ public class UserController {
     private UserRepository repository;
 
     @GetMapping("/")
-    public String homePage(){
-        return "home";
+    public String homePage(HttpSession session){
+        if(AuthUtils.isAuth(session)){
+            return "home";
+        }
+        return "redirect:/login";
     }
 
     @GetMapping("/login")
@@ -38,11 +43,10 @@ public class UserController {
     public String checkUser(@ModelAttribute("user") UserEntity user, Model model, HttpSession session){
         UserEntity userCheck = repository.findByUsername(user.getUsername());
         if(userCheck != null && userCheck.getPassword().equals(user.getPassword())){
-            session.setAttribute("sessionId", userCheck);
-            return "redirect:/employees";
+            session.setAttribute("LoggedInEmployee", userCheck);
+            return "redirect:/";
         }
-        model.addAttribute("error", "Identifiant invalide");
-        return "sign_up";
+        return "IllegalArgument";
     }
 
     @GetMapping("/signup")
@@ -68,7 +72,7 @@ public class UserController {
 
     @GetMapping("/logout")
     public String showlogout(HttpServletRequest request, HttpServletResponse response , HttpSession session){
-        session.invalidate();
+        session.removeAttribute("LoggedInEmployee");
         return "login";
     }
 }

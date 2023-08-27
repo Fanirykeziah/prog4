@@ -18,12 +18,13 @@ create table if not exists "employee" (
     children_number int,
     email_perso varchar not null,
     email_pro varchar not null,
-    numeros TEXT[],
+    phone_numbers varchar(13) unique,
     starting_date date not null,
     closing_date date,
     csp csp,
     cnaps varchar,
-    matricule varchar(10) unique
+    matricule varchar(10) unique,
+    salary varchar not null
 );
 
 

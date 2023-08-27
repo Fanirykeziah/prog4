@@ -11,5 +11,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PhoneNumber {
-    private String numeros;
+    private Long id;
+
+    private String number;
+
+    private String country_code;
 }
