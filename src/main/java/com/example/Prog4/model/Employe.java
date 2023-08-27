@@ -24,6 +24,8 @@ public class Employe {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 
+    private int age;
+
     private CinEntity cin;
 
     private Company company;

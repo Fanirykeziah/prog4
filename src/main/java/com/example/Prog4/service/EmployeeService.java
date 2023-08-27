@@ -11,6 +11,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @Service
@@ -24,12 +25,12 @@ public class EmployeeService {
     }
 
     public EmployeEntity addEmploye(Employe employe){
-                EmployeEntity employeEntity = new EmployeEntity();
-                EmployeEntity emp = employeEntity.builder()
+                EmployeEntity emp = EmployeEntity.builder()
                         .name(employe.getName())
                         .first_name(employe.getFirst_name())
                         .sexe(employe.getSexe())
                         .birthday(employe.getBirthday())
+                        .age(Period.between(LocalDate.now(), employe.getBirthday()).getYears())
                         .location(employe.getLocation())
                         .cin(employe.getCin())
                         .function(employe.getFunction())
@@ -53,13 +54,13 @@ public class EmployeeService {
     }
 
     public EmployeEntity updateEmploye(Employe employe){
-        EmployeEntity employeEntity = new EmployeEntity();
-        EmployeEntity emp = employeEntity.builder()
+        EmployeEntity emp = EmployeEntity.builder()
                 .id(employe.getId())
                 .name(employe.getName())
                 .first_name(employe.getFirst_name())
                 .sexe(employe.getSexe())
                 .birthday(employe.getBirthday())
+                .age(Period.between(LocalDate.now(), employe.getBirthday()).getYears())
                 .location(employe.getLocation())
                 .cin(employe.getCin())
                 .function(employe.getFunction())

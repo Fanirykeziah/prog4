@@ -33,6 +33,8 @@ public class EmployeEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 
+    private int age;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cin_id")
     private CinEntity cin;

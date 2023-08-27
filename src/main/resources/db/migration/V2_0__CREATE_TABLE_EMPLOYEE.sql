@@ -10,6 +10,7 @@ create table if not exists "employee" (
     name varchar(255) not null,
     first_name varchar(100) not null,
     birthday date not null,
+    age interval,
     cin_id int references cin(id) unique not null,
     sexe varchar(1) check (sexe in('H','F')),
     location varchar not null,
